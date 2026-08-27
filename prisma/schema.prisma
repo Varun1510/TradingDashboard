@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+enum TradeType {
+  FUTURE
+  OPTION
+  COMMODITY
+}
+
+enum Direction {
+  LONG
+  SHORT
+}
+
+enum TradeStatus {
+  OPEN
+  CLOSED
+}
+
+model Trade {
+  id             String      @id @default(cuid())
+  date           DateTime
+  tradeName      String
+  tradeType      TradeType
+  direction      Direction
+  entryPrice     Float?
+  exitPrice      Float?
+  quantity       Float?
+  strikePrice    Float?
+  expiry         DateTime?
+  profitLoss     Float
+  realizedPnl    Float
+  charges        Float       @default(0)
+  netPnl         Float
+  strategyTag    String?
+  notes          String?
+  status         TradeStatus @default(CLOSED)
+  screenshotUrl  String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([date])
+  @@index([tradeType])
+}
