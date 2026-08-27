@@ -27,8 +27,8 @@ export default function StatsStrip({ trades }: { trades: Trade[] }) {
     },
     { label: "WIN RATE", value: `${winRate}%`, tone: "neutral" },
     { label: "TRADES", value: `${trades.length}`, tone: "neutral" },
-    { label: "BEST", value: formatMoney(best), tone: "gain" },
-    { label: "WORST", value: formatMoney(worst), tone: "loss" },
+    { label: "BEST", value: formatMoney(best), tone: best >= 0 ? "gain" : "loss" }, 
+    { label: "WORST", value: formatMoney(worst), tone: worst >= 0 ? "gain" : "loss" },
   ];
 
   return (
