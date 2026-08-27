@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #0b0e14;
+  --color-surface: #12161f;
+  --color-surface-raised: #171c27;
+  --color-border: #232a38;
+  --color-border-soft: #1a2029;
+  --color-text: #e4e7ec;
+  --color-text-muted: #7c8494;
+  --color-text-faint: #4b5262;
+  --color-gain: #3fb68b;
+  --color-gain-dim: #1f3d33;
+  --color-loss: #e5484d;
+  --color-loss-dim: #3d2226;
+  --color-gold: #c9a227;
+  --color-gold-dim: #2e2712;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-border: var(--color-border);
+  --color-border-soft: var(--color-border-soft);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-faint: var(--color-text-faint);
+  --color-gain: var(--color-gain);
+  --color-gain-dim: var(--color-gain-dim);
+  --color-loss: var(--color-loss);
+  --color-loss-dim: var(--color-loss-dim);
+  --color-gold: var(--color-gold);
+  --color-gold-dim: var(--color-gold-dim);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+::selection {
+  background: var(--color-gold-dim);
+  color: var(--color-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
