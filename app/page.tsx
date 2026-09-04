@@ -32,13 +32,6 @@ export default function Home() {
     [trades, filter]
   );
 
-  async function handleDelete(id: string) {
-    const prev = trades;
-    setTrades((t) => t.filter((tr) => tr.id !== id));
-    const res = await fetch(`/api/trades/${id}`, { method: "DELETE" });
-    if (!res.ok) setTrades(prev);
-  }
-
   const filterOptions: FilterType[] = ["ALL", "FUTURE", "OPTION", "COMMODITY"];
 
   return (
@@ -93,7 +86,7 @@ export default function Home() {
       {loading ? (
         <p className="text-text-muted text-sm font-mono">Loading log...</p>
       ) : (
-        <TradeTable trades={filtered} onDelete={handleDelete} />
+        <TradeTable trades={filtered} />
       )}
     </main>
   );
