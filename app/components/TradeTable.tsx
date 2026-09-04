@@ -24,13 +24,7 @@ const typeStyles: Record<string, string> = {
   COMMODITY: "text-text-muted border-border bg-surface-raised",
 };
 
-export default function TradeTable({
-  trades,
-  onDelete,
-}: {
-  trades: Trade[];
-  onDelete: (id: string) => void;
-}) {
+export default function TradeTable({ trades }: { trades: Trade[] }) {
   const [lightbox, setLightbox] = useState<string | null>(null);
 
   if (trades.length === 0) {
@@ -59,7 +53,6 @@ export default function TradeTable({
                 "NET",
                 "TAG",
                 "SS",
-                "",
               ].map((h) => (
                 <th
                   key={h}
@@ -137,14 +130,6 @@ export default function TradeTable({
                   ) : (
                     <span className="text-text-faint text-xs">—</span>
                   )}
-                </td>
-                <td className="px-4 py-3 text-right">
-                  <button
-                    onClick={() => onDelete(t.id)}
-                    className="text-text-faint hover:text-loss text-xs transition"
-                  >
-                    delete
-                  </button>
                 </td>
               </tr>
             ))}
