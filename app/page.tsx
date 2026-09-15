@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import StatsStrip from "./components/StatsStrip";
+import WeeklyPnl from "./components/WeeklyPnl";
 import TradeForm from "./components/TradeForm";
 import TradeTable from "./components/TradeTable";
 import { Trade, TradeType } from "@/lib/types";
@@ -55,15 +56,22 @@ export default function Home() {
 
       <StatsStrip trades={trades} />
 
-      {showForm && (
-        <TradeForm
-          onCreated={(trade) => {
-            setTrades((t) => [trade, ...t]);
-            setShowForm(false);
-          }}
-          onCancel={() => setShowForm(false)}
-        />
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 items-start">
+        <div className="order-2 md:order-1">
+          {showForm && (
+            <TradeForm
+              onCreated={(trade) => {
+                setTrades((t) => [trade, ...t]);
+                setShowForm(false);
+              }}
+              onCancel={() => setShowForm(false)}
+            />
+          )}
+        </div>
+        <div className="order-1 md:order-2">
+          <WeeklyPnl trades={trades} />
+        </div>
+      </div>
 
       <div className="flex items-center gap-1.5">
         {filterOptions.map((opt) => (
